@@ -9,12 +9,12 @@ const Movie = styled(Link)`
   align-items: center;
   width: 400px;
   min-height: 50px;
-  border: 1px solid mediumspringgreen;
+  border: 1px solid black;
   border-radius: 4px;
   box-shadow: ${({ theme }) => theme.subtleShadow};
   margin-bottom: 20px;
   padding: 5px;
-  background: slategrey;
-  color: white;
+  background: white;
+  color: black;
   cursor: pointer;
 `;
