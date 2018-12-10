@@ -20,6 +20,7 @@ const Layout = styled.div`
     'content'
     'footer';
   grid-template-rows: auto 1fr auto;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
+  grid-gap: 10px;
 `;

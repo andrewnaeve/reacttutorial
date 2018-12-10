@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export default ({ children }) => <Body>{children}</Body>;
+export default ({ children }) => <Content>{children}</Content>;
 
-const Body = styled.div`
+const Content = styled.div`
   display: flex;
-  flex: 1;
+  width: 100%;
+  height: calc(100vh - 155px);
   grid-area: content;
-  background-color: whitesmoke;
+  background: whitesmoke;
+  padding: 20px;
 `;
