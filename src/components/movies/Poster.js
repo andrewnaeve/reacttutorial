@@ -4,8 +4,8 @@ import styled from 'styled-components';
 export default ({ results, id }) =>
   results
     .filter(result => result.imdbID === id)
-    .map(result => (
-      <Poster>
+    .map((result, index) => (
+      <Poster key={index}>
         <img src={result.Poster} alt={result.Title} />
       </Poster>
     ));

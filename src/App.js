@@ -5,16 +5,24 @@ import { imdbClient } from './imdbClient';
 import MovieList from './components/movies/MovieList';
 import { Router } from '@reach/router';
 import Poster from './components/movies/Poster';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchMovies } from './actions/fetch-movie-actions';
 
 class App extends Component {
   state = {
     results: []
   };
   componentDidMount() {
-    this.searchImdb();
+    // this.searchImdb();
+    const { fetchMovies } = this.props;
+    fetchMovies();
   }
   render() {
-    const { results } = this.state;
+    // const { results } = this.state;
+    const {
+      movies: { results }
+    } = this.props;
     console.log(results);
     return (
       <Layout>
@@ -41,7 +49,13 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({ ...state });
+const mapDispatchToProps = dispatch => bindActionCreators({ fetchMovies }, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
 
 const Movies = styled.div`
   display: grid;
