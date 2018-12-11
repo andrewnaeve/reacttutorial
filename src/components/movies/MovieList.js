@@ -2,11 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import Movie from './Movie';
 
-export default ({ results }) => (
+export default ({ results, deleteMovie }) => (
   <MovieList>
-    {results.map(data => (
-      <Movie key={data.imdbID} {...data} />
-    ))}
+    {results &&
+      results.map((data, index) => (
+        <Movie key={data.imdbID} index={index} deleteMovie={deleteMovie} {...data} />
+      ))}
   </MovieList>
 );
 

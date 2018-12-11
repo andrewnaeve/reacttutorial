@@ -1,10 +1,12 @@
+import produce from 'immer';
 import {
   FETCH_MOVIES,
   FETCH_MOVIES_SUCCESS,
-  FETCH_MOVIES_FAILURE
-} from '../actions/fetch-movie-actions';
+  FETCH_MOVIES_FAILURE,
+  DELETE_MOVIE
+} from '../actions/movie-actions';
 
-const initialState = {
+export const initialState = {
   results: [],
   isLoading: false,
   error: null
@@ -29,6 +31,13 @@ export default (state = initialState, action) => {
         results: null,
         isLoading: false,
         error: action.payload
+      };
+    case DELETE_MOVIE:
+      return {
+        ...state,
+        results: produce(state.results, draftState => {
+          draftState.splice(action.payload, 1);
+        })
       };
     default: {
       return state;

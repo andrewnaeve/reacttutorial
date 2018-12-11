@@ -4,13 +4,13 @@ import styled from 'styled-components';
 export default ({ results, id }) =>
   results
     .filter(result => result.imdbID === id)
-    .map((result, index) => (
-      <Poster key={index}>
-        <img src={result.Poster} alt={result.Title} />
-      </Poster>
+    .map(({ Poster, Title }, index) => (
+      <PosterImage key={index}>
+        <img src={Poster} alt={Title} />
+      </PosterImage>
     ));
 
-const Poster = styled.div`
+const PosterImage = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;

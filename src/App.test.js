@@ -1,9 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import { shallow } from 'enzyme';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+import { App } from './App';
+import { movies } from './__mocks__/movies';
+
+describe('<App />', () => {
+  it('renders without crashing', () => {
+    const props = {
+      fetchMovies: jest.fn(),
+      deleteMovie: jest.fn(),
+      movies: {
+        results: movies
+      }
+    };
+    const wrapper = shallow(<App {...props} />);
+    expect(wrapper.exists()).toEqual(true);
+  });
 });
