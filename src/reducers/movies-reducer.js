@@ -8,46 +8,37 @@ import {
 } from '../actions/movie-actions';
 
 export const initialState = {
-  results: [],
+  results: {},
   isLoading: false,
   error: null,
   filter: ''
 };
 
-export default (state = initialState, action) => {
-  switch (action.type) {
-    case FETCH_MOVIES:
-      return {
-        ...state,
-        isLoading: true,
-        error: null
-      };
-    case FETCH_MOVIES_SUCCESS:
-      return {
-        results: action.payload,
-        isLoading: false,
-        error: null
-      };
-    case FETCH_MOVIES_FAILURE:
-      return {
-        results: null,
-        isLoading: false,
-        error: action.payload
-      };
-    case DELETE_MOVIE:
-      return {
-        ...state,
-        results: produce(state.results, draftState => {
-          draftState.splice(action.payload, 1);
-        })
-      };
-    case FILTER_MOVIES:
-      return {
-        ...state,
-        filter: action.payload
-      };
-    default: {
-      return state;
+export default (state = initialState, action) =>
+  produce(state, draft => {
+    // eslint-disable-next-line
+    switch (action.type) {
+      case FETCH_MOVIES:
+        draft.isLoading = true;
+        draft.error = null;
+        break;
+      case FETCH_MOVIES_SUCCESS:
+        action.payload.forEach(movie => {
+          draft.results[movie.imdbID] = movie;
+        });
+        draft.isLoading = false;
+        draft.error = null;
+        break;
+      case FETCH_MOVIES_FAILURE:
+        draft.results = null;
+        draft.isLoading = false;
+        draft.error = action.payload;
+        break;
+      case DELETE_MOVIE:
+        delete draft.results[action.payload];
+        break;
+      case FILTER_MOVIES:
+        draft.filter = action.payload;
+        break;
     }
-  }
-};
+  });

@@ -5,7 +5,7 @@ import Movie from './Movie';
 export default ({ results, deleteMovie }) => (
   <MovieList>
     {results &&
-      results.map((data, index) => (
+      Object.values(results).map((data, index) => (
         <Movie key={data.imdbID} index={index} deleteMovie={deleteMovie} {...data} />
       ))}
   </MovieList>

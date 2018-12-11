@@ -5,7 +5,7 @@ import { Link } from '@reach/router';
 export default ({ imdbID, Title, index, deleteMovie }) => (
   <Container index={index}>
     <Movie to={`/result/${imdbID}`}>{Title}</Movie>
-    <DeleteButton type="button" className="delete-movie" onClick={() => deleteMovie(index)}>
+    <DeleteButton type="button" className="delete-movie" onClick={() => deleteMovie(imdbID)}>
       X
     </DeleteButton>
   </Container>

@@ -1,13 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Poster from './Poster';
-import { movies } from '../../__mocks__/movies';
+import { movieState } from '../../__mocks__/movies';
 
 const setup = Component => {
   const props = {
-    results: movies,
+    results: Object.values(movieState),
     index: 0,
-    id: movies[0].imdbID
+    id: 'tt0092546'
   };
   const wrapper = shallow(<Component {...props} />);
   return {

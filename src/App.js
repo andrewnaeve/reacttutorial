@@ -17,7 +17,6 @@ export class App extends Component {
 
   render() {
     const { movies, deleteMovie, filter } = this.props;
-
     return (
       <Layout>
         <Movies>
@@ -37,7 +36,7 @@ export class App extends Component {
   }
   handleChange = e => {
     const { filterMovies } = this.props;
-    filterMovies(e.target.value);
+    filterMovies(e.target.value.toLowerCase());
   };
 }
 
