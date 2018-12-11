@@ -2,7 +2,7 @@ import * as types from '../actions/movie-actions';
 import reducer, { initialState } from './movies-reducer';
 import { moviePayload, movieState } from '../__mocks__/movies';
 
-describe('Tests for movies reducer', () => {
+describe('Tests for movies-reducer', () => {
   it('Should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual({ ...initialState });
   });
@@ -35,5 +35,18 @@ describe('Tests for movies reducer', () => {
         ).results
       ).length
     ).toEqual(9);
+  });
+  it('should handle FILTER_MOVIES', () => {
+    expect(
+      reducer(undefined, {
+        type: types.FILTER_MOVIES,
+        payload: 'amazon'
+      })
+    ).toEqual({
+      results: {},
+      isLoading: false,
+      error: null,
+      filter: 'amazon'
+    });
   });
 });

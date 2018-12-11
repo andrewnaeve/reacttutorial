@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchMovies, deleteMovie, filterMovies } from './actions/movie-actions';
 import { getFilteredMovies } from './selectors/filterSelector';
+import MovieFilter from './components/filter/MovieFilter';
 
 export class App extends Component {
   componentDidMount() {
@@ -20,12 +21,7 @@ export class App extends Component {
     return (
       <Layout>
         <Movies>
-          <StyledInput
-            type="text"
-            placeholder="filter..."
-            onChange={this.handleChange}
-            value={filter}
-          />
+          <MovieFilter handleChange={this.handleChange} filter={filter} />
           <Router>
             <MovieList path="/" results={movies} deleteMovie={deleteMovie} />
             <Poster path="/result/:id" results={movies} />
@@ -61,11 +57,4 @@ const Movies = styled.div`
   flex-direction: column;
   width: 100%;
   overflow-y: scroll;
-`;
-
-const StyledInput = styled.input`
-  width: 200px;
-  min-height: 30px;
-  margin-bottom: 10px;
-  font-size: 18px;
 `;
