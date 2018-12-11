@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
 const getFilter = state => state.movies.filter;
-const getMovies = state => Object.values(state.movies.results);
+const getMovies = state => Object.values(state.movies.results || {});
 
 const convertToLowerCase = string =>
   string

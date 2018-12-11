@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { App } from './App';
-import { movies } from './__mocks__/movies';
+import { movieState } from './__mocks__/movies';
 
 describe('<App />', () => {
   it('renders without crashing', () => {
@@ -10,7 +10,7 @@ describe('<App />', () => {
       fetchMovies: jest.fn(),
       deleteMovie: jest.fn(),
       movies: {
-        results: movies
+        results: movieState
       }
     };
     const wrapper = shallow(<App {...props} />);
