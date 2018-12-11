@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 const MovieList = ({ results, deleteMovie }) => (
   <Container>
     {results &&
-      Object.values(results).map((data, index) => (
+      results.map((data, index) => (
         <Movie key={data.imdbID} index={index} deleteMovie={deleteMovie} {...data} />
       ))}
   </Container>
