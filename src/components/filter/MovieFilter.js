@@ -1,9 +1,15 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import PropTypes from 'prop-types';
 
-export default ({ handleChange, filter }) => (
+const MovieFilter = ({ handleChange, filter }) => (
   <StyledInput type="text" placeholder="filter..." onChange={handleChange} value={filter} />
 );
+
+MovieFilter.propTypes = {
+  handleChange: PropTypes.func,
+  filter: PropTypes.string
+};
 
 const StyledInput = styled.input`
   width: 200px;
@@ -11,3 +17,5 @@ const StyledInput = styled.input`
   margin-bottom: 10px;
   font-size: 18px;
 `;
+
+export default MovieFilter;

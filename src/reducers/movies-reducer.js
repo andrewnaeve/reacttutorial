@@ -23,7 +23,6 @@ export default (state = initialState, action) =>
         draft.error = null;
         break;
       case FETCH_MOVIES_SUCCESS:
-        console.log(action.payload);
         action.payload.forEach(movie => {
           draft.results[movie.imdbID] = movie;
         });

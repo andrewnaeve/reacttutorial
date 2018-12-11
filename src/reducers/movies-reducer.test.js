@@ -34,7 +34,7 @@ describe('Tests for movies-reducer', () => {
           }
         ).results
       ).length
-    ).toEqual(9);
+    ).toEqual(movieState.length - 1);
   });
   it('should handle FILTER_MOVIES', () => {
     expect(

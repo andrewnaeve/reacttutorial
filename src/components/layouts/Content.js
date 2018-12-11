@@ -1,9 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
-export default ({ children }) => <Content>{children}</Content>;
+const Layout = ({ children }) => <Container>{children}</Container>;
 
-const Content = styled.div`
+Layout.propTypes = {
+  children: PropTypes.object
+};
+
+const Container = styled.div`
   display: flex;
   width: 100%;
   height: calc(100vh - 155px);
@@ -11,3 +16,5 @@ const Content = styled.div`
   background: whitesmoke;
   padding: 20px;
 `;
+
+export default Layout;

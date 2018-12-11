@@ -1,15 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from '@reach/router';
+import PropTypes from 'prop-types';
 
-export default ({ imdbID, Title, index, deleteMovie }) => (
+const Movie = ({ imdbID, Title, index, deleteMovie }) => (
   <Container index={index}>
-    <Movie to={`/result/${imdbID}`}>{Title}</Movie>
+    <MovieLink to={`/result/${imdbID}`}>{Title}</MovieLink>
     <DeleteButton type="button" className="delete-movie" onClick={() => deleteMovie(imdbID)}>
       X
     </DeleteButton>
   </Container>
 );
+
+Movie.propTypes = {
+  imdbID: PropTypes.string,
+  Title: PropTypes.string,
+  index: PropTypes.number,
+  deleteMovie: PropTypes.func
+};
+
+export default Movie;
 
 const Container = styled.div`
   display: flex;
@@ -26,7 +36,7 @@ const Container = styled.div`
   margin-bottom: 20px;
 `;
 
-const Movie = styled(Link)`
+const MovieLink = styled(Link)`
   display: flex;
   align-items: center;
   padding: 5px;

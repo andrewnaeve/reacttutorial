@@ -30,9 +30,9 @@ export class App extends Component {
       </Layout>
     );
   }
-  handleChange = e => {
+  handleChange = ({ target: { value = '' } }) => {
     const { filterMovies } = this.props;
-    filterMovies(e.target.value.toLowerCase());
+    filterMovies(value.toLowerCase());
   };
 }
 
