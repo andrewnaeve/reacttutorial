@@ -6,38 +6,51 @@ import { Router } from '@reach/router';
 import Poster from './components/movies/Poster';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchMovies, deleteMovie } from './actions/movie-actions';
+import { fetchMovies, deleteMovie, filterMovies } from './actions/movie-actions';
+import { getFilteredMovies } from './selectors/filterSelector';
 
 export class App extends Component {
-  state = {
-    results: []
-  };
   componentDidMount() {
     const { fetchMovies } = this.props;
     fetchMovies();
   }
 
   render() {
-    const {
-      movies: { results },
-      deleteMovie
-    } = this.props;
+    const { movies, deleteMovie, filter } = this.props;
 
     return (
       <Layout>
         <Movies>
+          <StyledInput
+            type="text"
+            placeholder="filter..."
+            onChange={this.handleChange}
+            value={filter}
+          />
           <Router>
-            <MovieList path="/" results={results} deleteMovie={deleteMovie} />
-            <Poster path="/result/:id" results={results} />
+            <MovieList path="/" results={movies} deleteMovie={deleteMovie} />
+            <Poster path="/result/:id" results={movies} />
           </Router>
         </Movies>
       </Layout>
     );
   }
+  handleChange = e => {
+    const { filterMovies } = this.props;
+    filterMovies(e.target.value);
+  };
 }
 
-const mapStateToProps = state => ({ ...state });
-const mapDispatchToProps = dispatch => bindActionCreators({ fetchMovies, deleteMovie }, dispatch);
+const mapStateToProps = state => {
+  const movies = getFilteredMovies(state);
+  return {
+    movies,
+    filter: state.filter
+  };
+};
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ fetchMovies, deleteMovie, filterMovies }, dispatch);
 
 export default connect(
   mapStateToProps,
@@ -45,7 +58,15 @@ export default connect(
 )(App);
 
 const Movies = styled.div`
-  display: grid;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   overflow-y: scroll;
+`;
+
+const StyledInput = styled.input`
+  width: 200px;
+  min-height: 30px;
+  margin-bottom: 10px;
+  font-size: 18px;
 `;

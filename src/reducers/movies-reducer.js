@@ -3,13 +3,15 @@ import {
   FETCH_MOVIES,
   FETCH_MOVIES_SUCCESS,
   FETCH_MOVIES_FAILURE,
-  DELETE_MOVIE
+  DELETE_MOVIE,
+  FILTER_MOVIES
 } from '../actions/movie-actions';
 
 export const initialState = {
   results: [],
   isLoading: false,
-  error: null
+  error: null,
+  filter: ''
 };
 
 export default (state = initialState, action) => {
@@ -38,6 +40,11 @@ export default (state = initialState, action) => {
         results: produce(state.results, draftState => {
           draftState.splice(action.payload, 1);
         })
+      };
+    case FILTER_MOVIES:
+      return {
+        ...state,
+        filter: action.payload
       };
     default: {
       return state;

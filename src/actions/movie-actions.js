@@ -20,3 +20,9 @@ export const deleteMovie = index => ({
   type: DELETE_MOVIE,
   payload: index
 });
+
+export const FILTER_MOVIES = 'FILTER_MOVIES';
+export const filterMovies = string => ({
+  type: FILTER_MOVIES,
+  payload: string
+});
