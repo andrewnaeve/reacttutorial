@@ -41,7 +41,7 @@ describe('Tests for movies-reducer', () => {
         payload: 'amazon'
       })
     ).toEqual({
-      results: {},
+      results: [],
       isLoading: false,
       error: null,
       filter: 'amazon'
