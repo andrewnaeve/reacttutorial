@@ -3,14 +3,16 @@ import styled from 'styled-components';
 import Movie from './Movie';
 import PropTypes from 'prop-types';
 
-const MovieList = ({ results, deleteMovie }) => (
-  <Container>
-    {results &&
-      results.map((data, index) => (
-        <Movie key={data.imdbID} index={index} deleteMovie={deleteMovie} {...data} />
-      ))}
-  </Container>
-);
+function MovieList({ results, deleteMovie }) {
+  return (
+    <Container>
+      {results &&
+        results.map((data, index) => (
+          <Movie key={data.imdbID} index={index} deleteMovie={deleteMovie} {...data} />
+        ))}
+    </Container>
+  );
+}
 
 MovieList.propTypes = {
   results: PropTypes.array,

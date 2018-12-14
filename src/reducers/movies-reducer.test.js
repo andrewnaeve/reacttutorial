@@ -1,6 +1,6 @@
 import * as types from '../actions/movie-actions';
 import reducer, { initialState } from './movies-reducer';
-import { moviePayload, movieState } from '../__mocks__/movies';
+import { moviePayload } from '../__mocks__/movies';
 
 describe('Tests for movies-reducer', () => {
   it('Should return the initial state', () => {
@@ -13,7 +13,7 @@ describe('Tests for movies-reducer', () => {
         payload: moviePayload
       })
     ).toEqual({
-      results: movieState,
+      results: moviePayload,
       isLoading: false,
       error: null,
       filter: ''
@@ -21,20 +21,18 @@ describe('Tests for movies-reducer', () => {
   });
   it('should handle DELETE_MOVIE', () => {
     expect(
-      Object.keys(
-        reducer(
-          {
-            results: movieState,
-            isLoading: false,
-            error: null
-          },
-          {
-            type: types.DELETE_MOVIE,
-            payload: 'tt0092546'
-          }
-        ).results
-      ).length
-    ).toEqual(Object.keys(movieState).length - 1);
+      reducer(
+        {
+          results: moviePayload,
+          isLoading: false,
+          error: null
+        },
+        {
+          type: types.DELETE_MOVIE,
+          payload: 'tt0092546'
+        }
+      ).results.length
+    ).toEqual(moviePayload.length - 1);
   });
   it('should handle FILTER_MOVIES', () => {
     expect(

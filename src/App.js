@@ -37,9 +37,8 @@ export class App extends Component {
 }
 
 const mapStateToProps = state => {
-  const movies = getFilteredMovies(state);
   return {
-    movies,
+    movies: getFilteredMovies(state),
     filter: state.filter
   };
 };

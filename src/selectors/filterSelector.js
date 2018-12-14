@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
 const getFilter = state => state.movies.filter;
-const getMovies = state => Object.values(state.movies.results || {});
+const getMovies = state => state.movies.results;
 
 const convertToLowerCase = string =>
   string
@@ -10,7 +10,8 @@ const convertToLowerCase = string =>
     .join('');
 
 export const getFilteredMovies = createSelector(
-  [getFilter, getMovies],
+  getFilter,
+  getMovies,
   (filter, movies) => {
     if (filter && filter.length > 0) {
       return movies.filter(movie => convertToLowerCase(movie.Title).includes(filter));

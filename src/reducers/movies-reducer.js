@@ -8,7 +8,7 @@ import {
 } from '../actions/movie-actions';
 
 export const initialState = {
-  results: {},
+  results: [],
   isLoading: false,
   error: null,
   filter: ''
@@ -23,9 +23,7 @@ export default (state = initialState, action) =>
         draft.error = null;
         break;
       case FETCH_MOVIES_SUCCESS:
-        action.payload.forEach(movie => {
-          draft.results[movie.imdbID] = movie;
-        });
+        draft.results = action.payload;
         draft.isLoading = false;
         draft.error = null;
         break;
@@ -35,7 +33,7 @@ export default (state = initialState, action) =>
         draft.error = action.payload;
         break;
       case DELETE_MOVIE:
-        delete draft.results[action.payload];
+        draft.results = draft.results.filter(result => result.imdbID !== action.payload);
         break;
       case FILTER_MOVIES:
         draft.filter = action.payload;

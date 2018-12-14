@@ -1,13 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import MovieList from './MovieList';
-import { movieState } from '../../__mocks__/movies';
+import { moviePayload } from '../../__mocks__/movies';
 
 const setup = () => {
   const props = {
     deleteMovie: jest.fn(),
     fetchMovies: jest.fn(),
-    results: Object.values(movieState)
+    results: moviePayload
   };
   const wrapper = shallow(<MovieList {...props} />);
   return {
@@ -18,8 +18,8 @@ const setup = () => {
 
 describe('<MovieList />', () => {
   it('should render 10 movies', () => {
-    const { wrapper, props } = setup();
-    expect(wrapper.children().length).toEqual(Object.keys(movieState).length);
+    const { wrapper } = setup();
+    expect(wrapper.children().length).toEqual(moviePayload.length);
   });
   it('should call the deleteMovie action creator', () => {
     const { wrapper, props } = setup();
