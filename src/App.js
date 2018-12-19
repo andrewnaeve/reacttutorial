@@ -33,7 +33,7 @@ export class App extends Component {
   }
   handleChange = ({ target: { value = '' } }) => {
     const { filterMovies } = this.props;
-    filterMovies(value.toLowerCase());
+    filterMovies(value);
   };
 }
 
