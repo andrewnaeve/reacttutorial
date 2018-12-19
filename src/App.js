@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import Layout from './layouts';
-import MovieList from './components/movies/MovieList';
-import { Router } from '@reach/router';
-import Poster from './components/movies/Poster';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Router } from '@reach/router';
+
+import Layout from './layouts';
+import MovieList from './components/movies/MovieList';
+import Poster from './components/movies/Poster';
 import { fetchMovies, deleteMovie, filterMovies } from './actions/movie-actions';
 import { getFilteredMovies } from './selectors/filterSelector';
 import MovieFilter from './components/filter/MovieFilter';
