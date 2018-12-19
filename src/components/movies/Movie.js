@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Link } from '@reach/router';
 import PropTypes from 'prop-types';
 
@@ -30,7 +30,6 @@ const Container = styled.div`
   height: 50px;
   cursor: pointer;
   box-shadow: ${({ theme }) => theme.subtleShadow};
-
   border: 1px solid black;
   border-radius: 4px;
   margin-bottom: 20px;
